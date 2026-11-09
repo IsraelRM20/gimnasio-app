@@ -5,7 +5,7 @@ import random
 
 ARCHIVO_BD = "biblioteca.json"
 CARPETA_IMAGENES = "imagenes"
-PASSWORD_ADMIN = "1234"  # Contraseña de administrador
+PASSWORD_ADMIN = "47392954-Mm"  # Contraseña de administrador
 
 # --- URL DE LA IMAGEN DE CRISTIANO RONALDO ---
 URL_IMAGEN_CR7 = "https://github.com/IsraelRM20/gimnasio-app/blob/main/Zancada%20intensa%20con%20mancuernas.png?raw=true" 
@@ -32,17 +32,17 @@ os.makedirs(CARPETA_IMAGENES, exist_ok=True)
 # Configuración de página ancha
 st.set_page_config(page_title="GymFit - Disciplina > Motivación", layout="wide")
 
-# --- BARRA LATERAL (SIDEBAR): Motivación y CR7 siempre visibles sin ocupar espacio principal ---
+# --- BARRA LATERAL (SIDEBAR): Motivación y CR7 ---
 with st.sidebar:
     st.image(URL_IMAGEN_CR7, use_container_width=True)
     st.markdown("<h3 style='text-align: center; color: #ffffff;'>Disciplina > Motivación</h3>", unsafe_allow_html=True)
     st.markdown("---")
     st.markdown("<p style='text-align: center; color: #aaa; font-size: 0.9rem;'>Tu biblioteca privada de entrenamiento.</p>", unsafe_allow_html=True)
 
-# --- CONTENIDO PRINCIPAL (Visible inmediatamente arriba del todo) ---
+# --- CONTENIDO PRINCIPAL ---
 st.title("Mi Biblioteca de Gimnasio")
 
-# Las pestañas y el contenido arrancan de inmediato
+# Pestañas principales en español
 tab1, tab2, tab3 = st.tabs(["📋 Ver biblioteca", "🎯 Generar rutina", "➕ Añadir ejercicios"])
 bd = cargar_bd()
 
@@ -74,6 +74,7 @@ with tab2:
     else:
         sel = st.multiselect("¿Qué grupos musculares entrenas hoy?", list(bd.keys()))
         if sel:
+            # Selector inteligente limitado hasta 10 ejercicios o los que haya disponibles
             num = st.slider("Ejercicios por grupo muscular", 1, min(10, len(bd[sel[0]])), 3)
         else:
             num = 3
