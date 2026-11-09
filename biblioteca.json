@@ -1,11 +1,32 @@
 {
     "Pecho": [
-        "Press plano barra",
-        "Contractora",
-        "Fondo máquina",
-        "Press deep inclinado mancuernas",
-        "Apertura unilateral polea",
-        "Press unilateral polea",
-        "Flexiones"
+        {
+            "nombre": "Press plano barra",
+            "imagen": "https://github.com/IsraelRM20/gimnasio-app/blob/main/Zancada%20intensa%20con%20mancuernas.png?raw=true"
+        },
+        {
+            "nombre": "Contractora",
+            "imagen": ""
+        },
+        {
+            "nombre": "Fondo máquina",
+            "imagen": ""
+        },
+        {
+            "nombre": "Press deep inclinado mancuernas",
+            "imagen": "https://raw.githubusercontent.com/IsraelRM20/gimnasio-app/refs/heads/main/imagenes/Gemini_Generated_Image_nvhv6xnvhv6xnvhv.jpg"
+        },
+        {
+            "nombre": "Apertura unilateral polea",
+            "imagen": ""
+        },
+        {
+            "nombre": "Polea unilateral de prensa",
+            "imagen": ""
+        },
+        {
+            "nombre": "Flexiones",
+            "imagen": ""
+        }
     ]
 }
