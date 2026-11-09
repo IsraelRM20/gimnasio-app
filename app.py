@@ -1,4 +1,4 @@
-https://github.com/IsraelRM20/gimnasio-app/blob/main/Zancada%import streamlit as st
+import streamlit as st
 import json
 import os
 import random
