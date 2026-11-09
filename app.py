@@ -5,10 +5,10 @@ import random
 
 ARCHIVO_BD = "biblioteca.json"
 CARPETA_IMAGENES = "imagenes"
-PASSWORD_ADMIN = "47392954-Mm"  # Contraseña de administrador
+PASSWORD_ADMIN = "1234"  # Contraseña de administrador
 
-# --- URL DE LA IMAGEN DE CABECERA ---
-URL_IMAGEN_CABECERA = "https://github.com/IsraelRM20/gimnasio-app/blob/main/Zancada%20intensa%20con%20mancuernas.png?raw=true" 
+# --- URL DE LA IMAGEN DE CRISTIANO RONALDO ---
+URL_IMAGEN_CR7 = "https://github.com/IsraelRM20/gimnasio-app/blob/main/Zancada%20intensa%20con%20mancuernas.png?raw=true" 
 
 def cargar_bd():
     if not os.path.exists(ARCHIVO_BD):
@@ -29,53 +29,20 @@ def normalizar_ejercicio(nombre):
 
 os.makedirs(CARPETA_IMAGENES, exist_ok=True)
 
-# Configuración de página limpia y ancha
+# Configuración de página ancha
 st.set_page_config(page_title="GymFit - Disciplina > Motivación", layout="wide")
 
-# --- DISEÑO PROFESIONAL CON CSS (Estética oscura, tipografía moderna y banner grande) ---
-st.markdown("""
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
-    
-    html, body, [class*="css"] {
-        font-family: 'Montserrat', sans-serif;
-    }
-    
-    .hero-container {
-        text-align: center;
-        padding: 10px 0 20px 0;
-    }
-    
-    .hero-title {
-        font-weight: 800;
-        font-size: 2.8rem;
-        letter-spacing: -1px;
-        margin-bottom: 5px;
-        color: #ffffff;
-    }
-    
-    .hero-subtitle {
-        font-weight: 600;
-        font-size: 1.3rem;
-        color: #00d2ff;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 20px;
-    }
-    </style>
-""", unsafe_allow_html=True)
+# --- BARRA LATERAL (SIDEBAR): Motivación y CR7 siempre visibles sin ocupar espacio principal ---
+with st.sidebar:
+    st.image(URL_IMAGEN_CR7, use_container_width=True)
+    st.markdown("<h3 style='text-align: center; color: #ffffff;'>Disciplina > Motivación</h3>", unsafe_allow_html=True)
+    st.markdown("---")
+    st.markdown("<p style='text-align: center; color: #aaa; font-size: 0.9rem;'>Tu biblioteca privada de entrenamiento.</p>", unsafe_allow_html=True)
 
-# --- CABECERA ESTILO BANNER PROFESIONAL ---
-st.markdown('<div class="hero-container">', unsafe_allow_html=True)
-st.markdown('<div class="hero-title">Mi Biblioteca de Gimnasio</div>', unsafe_allow_html=True)
-st.markdown('<div class="hero-subtitle">Disciplina > Motivación</div>', unsafe_allow_html=True)
-st.markdown('</div>', unsafe_allow_html=True)
+# --- CONTENIDO PRINCIPAL (Visible inmediatamente arriba del todo) ---
+st.title("Mi Biblioteca de Gimnasio")
 
-# Imagen principal centrada y grande ocupando el ancho visual clave
-st.image(URL_IMAGEN_CABECERA, use_container_width=True)
-
-st.markdown("<br>", unsafe_allow_html=True)
-
+# Las pestañas y el contenido arrancan de inmediato
 tab1, tab2, tab3 = st.tabs(["📋 Ver biblioteca", "🎯 Generar rutina", "➕ Añadir ejercicios"])
 bd = cargar_bd()
 
@@ -85,7 +52,6 @@ with tab1:
         st.info("La biblioteca está vacía. Añade ejercicios desde la administración.")
     else:
         for m, ejs in bd.items():
-            # Sin emojis molestos, limpio y directo con el nombre del músculo en mayúscula elegante
             with st.expander(f"{m.upper()} — ({len(ejs)} ejercicios)"):
                 for e in ejs:
                     if isinstance(e, dict):
